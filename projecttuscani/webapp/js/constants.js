@@ -4,11 +4,17 @@ requirejs =
         //urlArgs: 'v=js_version/',
         paths:
         {
+        	utils:'utils',
+        	
+        	/*dependecies*/
         	bootstrap: 'libs/bootstrap',
         	domReady: 'libs/domReady',
-        	jquery:'libs/jquery-2.1.4.min',
+        	jquery:'libs/jquery',
         	moment: 'libs/moment',
-        	text: 'libs/text'
+        	text: 'libs/text',
+        	backbone: 'libs/backbone',
+        	underscore: 'libs/underscore'
+        	
         }
 
 };
