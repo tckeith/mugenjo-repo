@@ -15,7 +15,10 @@ requirejs =
         	backbone: 'libs/backbone',
         	underscore: 'libs/underscore'
         	
-        }
+        },
+        shim : {
+        	bootstrap: {deps: ['jquery']},
+		}
 
 };
 

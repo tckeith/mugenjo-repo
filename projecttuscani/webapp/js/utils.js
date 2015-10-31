@@ -1,4 +1,4 @@
-tuscani.utils = {
+utils = {
 		
 		CommunicationManager: function(data, callback)
 	    {
