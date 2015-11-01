@@ -13,8 +13,16 @@ requirejs =
         	moment: 'libs/moment',
         	text: 'libs/text',
         	backbone: 'libs/backbone',
-        	underscore: 'libs/underscore'
-        	
+        	underscore: 'libs/underscore',
+        		
+        	//models
+        	userInfoModel: 'model/userInfoModel',
+        		
+        	//viewmodels
+        	userInfoViewModel: 'viewmodel/userInfoViewModel',	
+        		
+        	//view
+        	userInfoView: 'viewmodel/userInfoView',
         },
         shim : {
         	bootstrap: {deps: ['jquery']},
