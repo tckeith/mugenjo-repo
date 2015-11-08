@@ -8,7 +8,7 @@ define(['jquery'], function($)
 		
 		
 		this.init = function(callback){
-			var _serviceObj = {
+			/*var _serviceObj = {
 				type:'GET',
 				url:''
 			};
@@ -16,7 +16,12 @@ define(['jquery'], function($)
 			utils.CommunicationManager(_serviceObj, function(_data)
            	{
            		if(callback){ callback(_data); }
-           	});
+           	});*/
+			
+			$.getJSON("test.json", function(json) {
+			   
+				if(callback){ callback(json)}
+			});
 			
 		};
 		

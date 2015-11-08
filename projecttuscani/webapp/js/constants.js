@@ -1,10 +1,11 @@
 requirejs = 
 {
         baseUrl: 'js/',
-        //urlArgs: 'v=js_version/',
+        urlArgs: 'v=1.0/',
         paths:
         {
         	utils:'utils',
+        	raijin:'libs/raijin',
         	
         	/*dependecies*/
         	bootstrap: 'libs/bootstrap',
@@ -19,10 +20,10 @@ requirejs =
         	userInfoModel: 'model/userInfoModel',
         		
         	//viewmodels
-        	userInfoViewModel: 'viewmodel/userInfoViewModel',	
+        	//userInfoViewModel: 'viewmodel/userInfoViewModel',	
         		
         	//view
-        	userInfoView: 'viewmodel/userInfoView',
+        	userInfoView: 'view/userInfoView',
         },
         shim : {
         	bootstrap: {deps: ['jquery']},

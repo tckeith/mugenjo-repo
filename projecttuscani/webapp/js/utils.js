@@ -92,7 +92,6 @@ utils = {
 		        	}
 		        	console.logs("onRetrieveDataFromServer : AJAX Request - Method : " + methodType + "::URL : " + url + ": Request failed-" + e, 'ERROR');
 	            }
-	    },	
-		
+	    }
 		
 };

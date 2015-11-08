@@ -9,37 +9,58 @@ define(function (require) {
 	require('moment');
 	require('utils');
 	
+	var raiJin = require('raijin');
+	
 	//models
 	var userInfoModel = require('userInfoModel'); 
 	
 	
 	//viewmodels
-	var userInfoViewModel = require('userInfoViewModel');
+	//var userInfoViewModel = require('userInfoViewModel');
 	
 	//view
 	var userInfoView = require('userInfoView');
 	
 	
 	$(function(){
+		
+		var raijin = new raiJin.Raijin({name:'Raijin'});
+		
 		//Domain Model
-		var userM = new UserInfoModel({name:'userInfoModel'});
-		
-		//ViewModel
-		var userVM = new UserInfoViewModel({
-			
-		})
-		
+		var userM = new userInfoModel.UserInfoModel({name:'userInfoModel'});
 		
 		
 		var AppRouter = Backbone.Router.extend({
-			
+			routes : {
+				'': 'showHome',
+				'home': 'showHome'
+			}
 		});
 		
 		/*Instantiate the router */
         var app_router = new AppRouter();
+        
+        app_router.on('route:showHome',function(){
+        	console.log(raijin.models);
+        	
+        	var userInfoV = new userInfoView.UserInfoView({name:'userInfoView'});
+        	raijin.addView(userInfoV);
+        	raijin.getView('userInfoView').init();
+        	//userInfoV.init();
+        });
 		
         
         $(document).ready(function(){
+        	
+        	raijin.addModel(userM);
+        	
+        	if (window.location.hash === ''){   window.location = '#home';	}else{	Backbone.history.loadUrl(Backbone.history.fragment);   }
+			   
+			if (!Backbone.History.started){   Backbone.history.start();	}
+			
+			/*cache clear*/
+			$.ajaxSetup({ cache: false });
+        	
         	console.log('document Ready');
         });
 	});
