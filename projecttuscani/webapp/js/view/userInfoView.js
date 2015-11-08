@@ -1,4 +1,4 @@
-define(['jquery', 'raijin'], function($, raijin)
+define(['jquery', 'raitei'], function($, raitei)
 {
 
 	function UserInfoView(args)
@@ -17,7 +17,7 @@ define(['jquery', 'raijin'], function($, raijin)
 				alert('Complete');
 			});*/
 			
-			raijin.getModel('userInfoModel').init();
+			raitei.getModel('userInfoModel').init();
 		}
 		
     }

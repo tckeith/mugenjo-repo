@@ -18,7 +18,7 @@ define(['jquery'], function($)
            		if(callback){ callback(_data); }
            	});*/
 			
-			$.getJSON("test.json", function(json) {
+			$.getJSON("test.data/test.json", function(json) {
 			   
 				if(callback){ callback(json)}
 			});

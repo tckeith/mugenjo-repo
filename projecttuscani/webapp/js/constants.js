@@ -1,11 +1,12 @@
 requirejs = 
 {
         baseUrl: 'js/',
-        urlArgs: 'v=1.0/',
+        urlArgs: 'v=1.1/',
         paths:
         {
         	utils:'utils',
         	raijin:'libs/raijin',
+        	raitei: 'libs/raitei',
         	
         	/*dependecies*/
         	bootstrap: 'libs/bootstrap',

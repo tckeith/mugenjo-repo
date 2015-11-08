@@ -9,7 +9,7 @@ define(function (require) {
 	require('moment');
 	require('utils');
 	
-	var raiJin = require('raijin');
+	require('raitei');
 	
 	//models
 	var userInfoModel = require('userInfoModel'); 
@@ -24,7 +24,7 @@ define(function (require) {
 	
 	$(function(){
 		
-		var raijin = new raiJin.Raijin({name:'Raijin'});
+		//var raijin = new raiJin.Raijin({name:'Raijin'});
 		
 		//Domain Model
 		var userM = new userInfoModel.UserInfoModel({name:'userInfoModel'});
@@ -41,18 +41,23 @@ define(function (require) {
         var app_router = new AppRouter();
         
         app_router.on('route:showHome',function(){
-        	console.log(raijin.models);
         	
         	var userInfoV = new userInfoView.UserInfoView({name:'userInfoView'});
-        	raijin.addView(userInfoV);
-        	raijin.getView('userInfoView').init();
+        	//raijin.addView(userInfoV);
+        	//raijin.getView('userInfoView').init();
+        	raitei.addView(userInfoV);
+        	raitei.getView('userInfoView').init();
         	//userInfoV.init();
         });
 		
         
         $(document).ready(function(){
         	
-        	raijin.addModel(userM);
+        	//raijin.addModel(userM);
+        	
+        	console.log(raitei);
+        	raitei.addModel(userM);
+        	
         	
         	if (window.location.hash === ''){   window.location = '#home';	}else{	Backbone.history.loadUrl(Backbone.history.fragment);   }
 			   
