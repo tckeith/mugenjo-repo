@@ -7,7 +7,7 @@ define(['jquery'], function($)
 		
 		
 		
-		this.init = function(callback){
+		this.getUserModel = function(callback){
 			/*var _serviceObj = {
 				type:'GET',
 				url:''
@@ -18,7 +18,7 @@ define(['jquery'], function($)
            		if(callback){ callback(_data); }
            	});*/
 			
-			$.getJSON("test.data/test.json", function(json) {
+			$.getJSON("test.data/raijin.json", function(json) {
 			   
 				if(callback){ callback(json)}
 			});

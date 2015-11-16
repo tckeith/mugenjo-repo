@@ -42,7 +42,10 @@ define(function (require) {
         
         app_router.on('route:showHome',function(){
         	
-        	var userInfoV = new userInfoView.UserInfoView({name:'userInfoView'});
+        	var userInfoV = new userInfoView.UserInfoView(
+        			{name:'userInfoView',
+        			hash: Backbone.history.fragment,}
+        			);
         	//raijin.addView(userInfoV);
         	//raijin.getView('userInfoView').init();
         	raitei.addView(userInfoV);
@@ -55,13 +58,13 @@ define(function (require) {
         	
         	//raijin.addModel(userM);
         	
-        	console.log(raitei);
         	raitei.addModel(userM);
         	
+        	if (!Backbone.History.started){   Backbone.history.start();	}
         	
         	if (window.location.hash === ''){   window.location = '#home';	}else{	Backbone.history.loadUrl(Backbone.history.fragment);   }
 			   
-			if (!Backbone.History.started){   Backbone.history.start();	}
+			
 			
 			/*cache clear*/
 			$.ajaxSetup({ cache: false });

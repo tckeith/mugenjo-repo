@@ -5,22 +5,39 @@ define(['jquery', 'raitei'], function($, raitei)
     {
 		var _this = this;
 		this.name = args['name'];
+		this.hash = args['hash'];
+		this.userData = {};
 		
 		this.init = function(){
-			_this.load();
+			raitei.getModel('userInfoModel').getUserModel(_this.render);
 		}
 		
-		this.load = function(){
+		this.render = function(data){
 			
-			/*UserInfoModel.init(function(data){
-				console.log(data)
-				alert('Complete');
-			});*/
+			var _user = _this.userData = data.user;
 			
-			raitei.getModel('userInfoModel').init();
-		}
+			if (sessionStorage) {
+				sessionStorage.setItem("username",_user.username);
+				sessionStorage.setItem("role", JSON.stringify(_user.role));
+				sessionStorage.setItem("uid", _user.uid);
+			}
+			
+			var superAdmin = _user.role.id == 0 ? true: false;
+			
+			$('#tabLayout').html('');
+			
+			if(superAdmin){
+				var _html = "<li id='library'><a href='#library'>Library</a></li>"
+						+"<li id='upload'><a href='#upload'>Upload</a></li>"
+						+"<li id='manage'><a href='#manage'>Manage</a></li>";
+				$('#tabLayout').append(_html);
+			}
+		};
 		
-    }
+		
+		
+		
+    }/*End UserInfoView*/
 	
 	return {
 		'UserInfoView' : UserInfoView
