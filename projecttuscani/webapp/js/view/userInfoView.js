@@ -1,4 +1,4 @@
-define(['jquery', 'raitei'], function($, raitei)
+define(['jquery', 'raijin'], function($, raijin)
 {
 
 	function UserInfoView(args)
@@ -9,7 +9,7 @@ define(['jquery', 'raitei'], function($, raitei)
 		this.userData = {};
 		
 		this.init = function(){
-			raitei.getModel('userInfoModel').getUserModel(_this.render);
+			raijin.getModel('userInfoModel').getUserModel(_this.render);
 		}
 		
 		this.render = function(data){

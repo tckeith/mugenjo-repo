@@ -1,0 +1,25 @@
+body{
+	background:#131313;
+}
+
+.navbar {
+	background:#2C2C2C;
+}
+
+.nav-tabs {
+	border-bottom: #000
+}
+
+
+footer {
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   height:30px;
+   width:100%;
+   background:#181818 ;
+}
+
+
+/*Bootstrap overrides */
+

@@ -8,8 +8,10 @@ define(function (require) {
 	require('text');
 	require('moment');
 	require('utils');
+	require('blockui');
 	
-	require('raitei');
+	//require('raitei');
+	require('raijin');
 	
 	//models
 	var userInfoModel = require('userInfoModel'); 
@@ -46,19 +48,19 @@ define(function (require) {
         			{name:'userInfoView',
         			hash: Backbone.history.fragment,}
         			);
-        	//raijin.addView(userInfoV);
-        	//raijin.getView('userInfoView').init();
-        	raitei.addView(userInfoV);
-        	raitei.getView('userInfoView').init();
+        	raijin.addView(userInfoV);
+        	raijin.getView('userInfoView').init();
+        	//raitei.addView(userInfoV);
+        	//raitei.getView('userInfoView').init();
         	//userInfoV.init();
         });
 		
         
         $(document).ready(function(){
         	
-        	//raijin.addModel(userM);
+        	raijin.addModel(userM);
         	
-        	raitei.addModel(userM);
+        	//raitei.addModel(userM);
         	
         	if (!Backbone.History.started){   Backbone.history.start();	}
         	

@@ -1,14 +1,14 @@
 requirejs = 
 {
         baseUrl: 'js/',
-        urlArgs: 'v=1.1/',
+        urlArgs: 'v=1.1',
         paths:
         {
         	utils:'utils',
         	raijin:'libs/raijin',
-        	raitei: 'libs/raitei',
+        	//raitei: 'libs/raitei',
         	
-        	/*dependecies*/
+        	/*dependencies*/
         	bootstrap: 'libs/bootstrap',
         	domReady: 'libs/domReady',
         	jquery:'libs/jquery',
@@ -16,6 +16,7 @@ requirejs =
         	text: 'libs/text',
         	backbone: 'libs/backbone',
         	underscore: 'libs/underscore',
+        	blockui: 'libs/blockui',
         		
         	//models
         	userInfoModel: 'model/userInfoModel',
