@@ -2,6 +2,12 @@ body{
 	background:#131313;
 }
 
+header {
+	display: inline;
+	z-index: 9999;
+	padding-right: 10px;
+}
+
 .navbar {
 	background:#2C2C2C;
 }
