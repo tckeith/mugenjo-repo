@@ -15,8 +15,7 @@ define('raijin',['require','underscore','jquery'], function( require ) {
 	 
 	    Raijin = function(config) {
 	    	
-	    	var models = {};
-	    	var views = [];
+	    	var models = [], views = [], viewmodels = [];
 	    	var exportName, previousObject;
 	    	
 	    	this.id = (Math.random());
@@ -65,6 +64,27 @@ define('raijin',['require','underscore','jquery'], function( require ) {
 		    	return arguments.length === 1 ? results[0] : results;
 			};
 			
+			this.addViewModel = function( viewmodel ){
+				var idx, maxIdx, vm,
+	    		results = [];
+
+		    	if( arguments.length === 1 && _.isArray( viewmodel ) ) {
+		    		return _this.addViewModel.apply( this, viewmodel );
+		    	}
+
+		    	for( idx = 0, maxIdx = arguments.length; idx < maxIdx; idx++ ) {
+		    		vm = arguments[idx];
+		    		if( vm.name) {
+		    			viewmodels[vm.name] = vm;
+		    		}
+
+		    		results.push(vw);
+		    	};
+
+				//this.subscribeEvents.apply( this, slice.call(arguments) ); // subscribe events
+		    	return arguments.length === 1 ? results[0] : results;
+			};
+			
 			this.getModel = function( name ){
 				return models[name];
 			};
@@ -72,6 +92,10 @@ define('raijin',['require','underscore','jquery'], function( require ) {
 			this.getView = function( name ){
 				return views[name];
 			};
+			
+			this.getViewModel = function ( name ){
+				return viewmodels[name];
+			}
 			
 			if( config ) {
 	            for( key in config ) {
