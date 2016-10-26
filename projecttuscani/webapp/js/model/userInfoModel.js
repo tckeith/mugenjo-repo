@@ -1,34 +1,22 @@
-define(['jquery'], function($)
+define(['jquery', 'raijin'], function($, raijin)
 {
 
-	function UserInfoModel(args)
-    {
-		this.name = args['name'];
+	function instance (args)
+	{
+		var self = _.extend(this, args, {
+			init : function(){
+				
+				var event = _.extend(self, {TestData : 'This is a test'});
+				
+				
+				raijin.publish(event);
+			}
+		});
 		
-		
-		
-		this.getUserModel = function(callback){
-			/*var _serviceObj = {
-				type:'GET',
-				url:''
-			};
-			
-			utils.CommunicationManager(_serviceObj, function(_data)
-           	{
-           		if(callback){ callback(_data); }
-           	});*/
-			
-			$.getJSON("test.data/raijin.json", function(json) {
-			   
-				if(callback){ callback(json)}
-			});
-			
-		};
-		
-    }
+	}
 	
 	return {
-		'UserInfoModel' : UserInfoModel
+		instance: instance
 	}
 
 });

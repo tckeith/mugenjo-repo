@@ -11,15 +11,16 @@ define('raijin',['require','underscore','jquery'], function( require ) {
 	 var _ = require('underscore'),
      $ = require('jquery');
 	 
-	 var Raijin;
+	 var Raijin, eventHub;
 	 
+	 	/*Base Model*/
 	    Raijin = function(config) {
 	    	
 	    	var models = [], views = [], viewmodels = [];
 	    	var exportName, previousObject;
+	    	eventHub = new EventHub();
 	    	
 	    	this.id = (Math.random());
-	    	var _this = this;
 	    	
 	    	this.addModel = function( model ){
 				var mod, 
@@ -28,7 +29,7 @@ define('raijin',['require','underscore','jquery'], function( require ) {
 				var results = [];
 
 		    	if( arguments.length === 1 && _.isArray(model) ) {
-		    		return _this.addModel.apply(this, model);
+		    		return this.addModel.apply(this, model);
 		    	} 
 		    	
 	    		for( idx = 0, maxIdx = arguments.length; idx < maxIdx; idx++ ) {
@@ -48,7 +49,7 @@ define('raijin',['require','underscore','jquery'], function( require ) {
 	    		results = [];
 
 		    	if( arguments.length === 1 && _.isArray( view ) ) {
-		    		return _this.addView.apply( this, view );
+		    		return this.addView.apply( this, view );
 		    	}
 
 		    	for( idx = 0, maxIdx = arguments.length; idx < maxIdx; idx++ ) {
@@ -69,7 +70,7 @@ define('raijin',['require','underscore','jquery'], function( require ) {
 	    		results = [];
 
 		    	if( arguments.length === 1 && _.isArray( viewmodel ) ) {
-		    		return _this.addViewModel.apply( this, viewmodel );
+		    		return this.addViewModel.apply( this, viewmodel );
 		    	}
 
 		    	for( idx = 0, maxIdx = arguments.length; idx < maxIdx; idx++ ) {
@@ -95,7 +96,11 @@ define('raijin',['require','underscore','jquery'], function( require ) {
 			
 			this.getViewModel = function ( name ){
 				return viewmodels[name];
-			}
+			};
+			
+			this.publish = function(){
+				return eventHub.subscribeEvents.apply(eventHub, arguments);
+			};
 			
 			if( config ) {
 	            for( key in config ) {
@@ -114,6 +119,41 @@ define('raijin',['require','underscore','jquery'], function( require ) {
 	            };
 	        }
 	    
+	    };
+	    
+	    //Event Subscriptions
+	    EventHub  = function()
+	    {
+	    	
+	    	this.subscribeEvents = function()
+	    	{
+	    		_.each(arguments, function(args, idx){
+	    			var subs = args.subscriptions;
+	    			if(subs){
+	    				postEvent(this, subs, args);
+	    			}
+	    				
+	    		});
+	    		
+	    	};
+	    	
+	    	this.postEvent = function(event, subscriptions, subscriber)
+	    	{
+	    		_.each(subscriptions, function(subscrp, idx){
+	    			
+	    			if(typeof subscrp === 'string'){
+	    				for( event in subscrp ){
+	    					if(_.has(subscrp, event)){
+	    						
+	    						if(typeof subscrp.onContextEvent === 'function')
+	    							subscrp.call
+	    					}
+	    				}
+	    			}
+	    			
+	    		});
+	    	};
+	    	
 	    };
 	    
 	    _.extend(Raijin, {

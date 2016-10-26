@@ -1,35 +1,9 @@
-define(function (require) {
-	
-	require('jquery');
-	require('backbone');
-	require('underscore');
-	require('bootstrap');
-	require('domReady');
-	require('text');
-	require('moment');
-	require('utils');
-	require('blockui');
-	
-	//require('raitei');
-	require('raijin');
-	
-	//models
-	var userInfoModel = require('userInfoModel'); 
-	
-	
-	//viewmodels
-	//var userInfoViewModel = require('userInfoViewModel');
-	
-	//view
-	var userInfoView = require('userInfoView');
+//define(function (require) {
+define(['jquery', 'backbone', 'underscore', 'raijin', 'utils', 'userInfoModel'],
+		function($, Backbone, _, raijin, utils, UserInfoModel) {
 	
 	
 	$(function(){
-		
-		//var raijin = new raiJin.Raijin({name:'Raijin'});
-		
-		//Domain Model
-		var userM = new userInfoModel.UserInfoModel({name:'userInfoModel'});
 		
 		
 		var AppRouter = Backbone.Router.extend({
@@ -44,29 +18,21 @@ define(function (require) {
         
         app_router.on('route:showHome',function(){
         	
-        	var userInfoV = new userInfoView.UserInfoView(
-        			{name:'userInfoView',
-        			hash: Backbone.history.fragment,}
-        			);
-        	raijin.addView(userInfoV);
-        	raijin.getView('userInfoView').init();
-        	//raitei.addView(userInfoV);
-        	//raitei.getView('userInfoView').init();
-        	//userInfoV.init();
+        	//userM.getUserModel();
+        	
+        	var userInfoM = new UserInfoModel.instance({name: "UserInfoModel"});
+        	raijin.addModel(userInfoM);
+        	
+        	userInfoM.init();
+        	
         });
 		
         
         $(document).ready(function(){
         	
-        	raijin.addModel(userM);
-        	
-        	//raitei.addModel(userM);
-        	
         	if (!Backbone.History.started){   Backbone.history.start();	}
         	
         	if (window.location.hash === ''){   window.location = '#home';	}else{	Backbone.history.loadUrl(Backbone.history.fragment);   }
-			   
-			
 			
 			/*cache clear*/
 			$.ajaxSetup({ cache: false });
