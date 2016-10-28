@@ -27,6 +27,13 @@ define('raijin',['require','underscore','jquery'], function( require ) {
 				idx, maxIdx;
 				
 				var results = [];
+				
+				model['publish'] = function(){
+					
+					var args = arguments;
+					
+					return 'This is a test';
+				};
 
 		    	if( arguments.length === 1 && _.isArray(model) ) {
 		    		return this.addModel.apply(this, model);
@@ -41,7 +48,7 @@ define('raijin',['require','underscore','jquery'], function( require ) {
 	    			results.push(mod);
 	    		}
 	    		
-		    	return arguments.length === 1 ? results[0] : results;;
+		    	return mod;
 			};
 			
 			this.addView =function( view ){

@@ -32,7 +32,7 @@ define(['jquery', 'backbone', 'underscore', 'raijin', 'utils', 'userInfoModel'],
         	
         	if (!Backbone.History.started){   Backbone.history.start();	}
         	
-        	if (window.location.hash === ''){   window.location = '#home';	}else{	Backbone.history.loadUrl(Backbone.history.fragment);   }
+        	//if (window.location.hash === ''){   window.location = '#home';	}else{	Backbone.history.loadUrl(Backbone.history.fragment);   }
 			
 			/*cache clear*/
 			$.ajaxSetup({ cache: false });
