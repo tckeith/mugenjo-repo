@@ -1,24 +1,28 @@
-define(['jquery'], function($)
+define(['jquery', 'raijin'], function($, raijin)
 {
 
-	function UserInfoViewModel(args)
-    {
-		 this.name = args['name']; 
-         this.domains = args['domains'];
-         this.subscriptions = args['subscriptions'];
-         
-         this.init = function(){
-        	 
-        	 $.each(this.domains, function(index, value){
-        		
-        		 
-        		 
-        	 });
-         };
-    }
+	function instance (args)
+	{
+		var self = _.extend(this, args, {
+			
+			fetch : function()
+			{
+				
+				raijin.getModel(self.domain).init();
+				
+			},
+			
+			onContextEvent: function(event, data)
+			{
+				debugger;
+				event.data.publish(data);
+			}
+		});
+		
+	}
 	
 	return {
-		'UserInfoViewModel' : UserInfoViewModel
+		instance: instance
 	}
 
 });

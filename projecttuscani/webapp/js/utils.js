@@ -1,4 +1,4 @@
-utils = {
+jin.utils = {
 		
 		CommunicationManager: function(data, callback)
 	    {

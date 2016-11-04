@@ -1,9 +1,18 @@
 //define(function (require) {
-define(['jquery', 'backbone', 'underscore', 'raijin', 'utils', 'userInfoModel'],
-		function($, Backbone, _, raijin, utils, UserInfoModel) {
+define(['jquery', 'backbone', 'underscore', 'raijin', 'utils', 'userInfoView', 'userInfoModel', 'userInfoViewModel'],
+		function($, Backbone, _, raijin, utils, UserInfoView, UserInfoModel, UserInfoViewModel) {
 	
 	
 	$(function(){
+		
+		//Declare ViewModels and Models
+		
+		var userInfoM = new UserInfoModel.instance({name: "UserInfoModel"});
+    	raijin.addModel(userInfoM);
+    	
+    	
+    	var userVM = new UserInfoViewModel.instance({name: "UserInfoViewModel", domain : 'UserInfoModel', subscriptions: ['UserInfoModel']});
+    	raijin.addViewModel(userVM);
 		
 		
 		var AppRouter = Backbone.Router.extend({
@@ -18,12 +27,9 @@ define(['jquery', 'backbone', 'underscore', 'raijin', 'utils', 'userInfoModel'],
         
         app_router.on('route:showHome',function(){
         	
-        	//userM.getUserModel();
+        	var userInfoV = new UserInfoView.instance({name: "UserInfoView", controller: userVM, subscriptions: ['UserInfoViewModel'], el : "#Containter"});
         	
-        	var userInfoM = new UserInfoModel.instance({name: "UserInfoModel"});
-        	raijin.addModel(userInfoM);
-        	
-        	userInfoM.init();
+        	raijin.addView(userInfoV);
         	
         });
 		

@@ -1,3 +1,7 @@
+window.jin = {
+	utils : {}
+};
+
 requirejs = 
 {
         baseUrl: 'js/',
@@ -6,7 +10,6 @@ requirejs =
         {
         	utils:'utils',
         	raijin:'libs/raijin',
-        	//raitei: 'libs/raitei',
         	
         	/*dependencies*/
         	bootstrap: 'libs/bootstrap',
@@ -22,7 +25,7 @@ requirejs =
         	userInfoModel: 'model/userInfoModel',
         		
         	//viewmodels
-        	//userInfoViewModel: 'viewmodel/userInfoViewModel',	
+        	userInfoViewModel: 'viewmodel/userInfoViewModel',	
         		
         	//view
         	userInfoView: 'view/userInfoView',

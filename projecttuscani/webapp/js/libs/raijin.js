@@ -28,12 +28,7 @@ define('raijin',['require','underscore','jquery'], function( require ) {
 				
 				var results = [];
 				
-				model['publish'] = function(){
-					
-					var args = arguments;
-					
-					return 'This is a test';
-				};
+				model['publish'] = eventHub.postEvent;
 
 		    	if( arguments.length === 1 && _.isArray(model) ) {
 		    		return this.addModel.apply(this, model);
@@ -48,12 +43,40 @@ define('raijin',['require','underscore','jquery'], function( require ) {
 	    			results.push(mod);
 	    		}
 	    		
+	    		eventHub.subscribeEvents.apply(eventHub, arguments);
+	    	    		
 		    	return mod;
+			};
+			
+			this.addViewModel = function( viewmodel ){
+				var idx, maxIdx, vm,
+	    		results = [];
+				
+				viewmodel['publish'] = eventHub.postEvent;
+
+		    	if( arguments.length === 1 && _.isArray( viewmodel ) ) {
+		    		return this.addViewModel.apply( this, viewmodel );
+		    	}
+
+		    	for( idx = 0, maxIdx = arguments.length; idx < maxIdx; idx++ ) {
+		    		vm = arguments[idx];
+		    		if( vm.name) {
+		    			viewmodels[vm.name] = vm;
+		    		}
+
+		    		results.push(vm);
+		    	};
+		    	
+		    	eventHub.subscribeEvents.apply(eventHub, arguments);
+
+		    	return arguments.length === 1 ? results[0] : results;
 			};
 			
 			this.addView =function( view ){
 				var idx, maxIdx, vw,
 	    		results = [];
+				
+				//view['publish'] = eventHub.postEvent;
 
 		    	if( arguments.length === 1 && _.isArray( view ) ) {
 		    		return this.addView.apply( this, view );
@@ -68,28 +91,8 @@ define('raijin',['require','underscore','jquery'], function( require ) {
 		    		results.push(vw);
 		    	};
 
-				//this.subscribeEvents.apply( this, slice.call(arguments) ); // subscribe events
-		    	return arguments.length === 1 ? results[0] : results;
-			};
-			
-			this.addViewModel = function( viewmodel ){
-				var idx, maxIdx, vm,
-	    		results = [];
-
-		    	if( arguments.length === 1 && _.isArray( viewmodel ) ) {
-		    		return this.addViewModel.apply( this, viewmodel );
-		    	}
-
-		    	for( idx = 0, maxIdx = arguments.length; idx < maxIdx; idx++ ) {
-		    		vm = arguments[idx];
-		    		if( vm.name) {
-		    			viewmodels[vm.name] = vm;
-		    		}
-
-		    		results.push(vw);
-		    	};
-
-				//this.subscribeEvents.apply( this, slice.call(arguments) ); // subscribe events
+				eventHub.subscribeEvents.apply(eventHub, arguments);
+				
 		    	return arguments.length === 1 ? results[0] : results;
 			};
 			
@@ -103,10 +106,6 @@ define('raijin',['require','underscore','jquery'], function( require ) {
 			
 			this.getViewModel = function ( name ){
 				return viewmodels[name];
-			};
-			
-			this.publish = function(){
-				return eventHub.subscribeEvents.apply(eventHub, arguments);
 			};
 			
 			if( config ) {
@@ -128,37 +127,29 @@ define('raijin',['require','underscore','jquery'], function( require ) {
 	    
 	    };
 	    
-	    //Event Subscriptions
+	    /*
+	     * Handle events
+	     */
 	    EventHub  = function()
 	    {
-	    	
+	    	/*
+	    	 * Listener based on instance name
+	    	 */
 	    	this.subscribeEvents = function()
 	    	{
-	    		_.each(arguments, function(args, idx){
-	    			var subs = args.subscriptions;
-	    			if(subs){
-	    				postEvent(this, subs, args);
-	    			}
-	    				
+	    		var instance = arguments[0];
+	    		_.each(instance.subscriptions, function(sub){
+	    			$(document).on(sub, instance, instance.onContextEvent);	
 	    		});
 	    		
 	    	};
 	    	
-	    	this.postEvent = function(event, subscriptions, subscriber)
+	    	/*
+	    	 * Post events on instance name
+	    	 */
+	    	this.postEvent = function()
 	    	{
-	    		_.each(subscriptions, function(subscrp, idx){
-	    			
-	    			if(typeof subscrp === 'string'){
-	    				for( event in subscrp ){
-	    					if(_.has(subscrp, event)){
-	    						
-	    						if(typeof subscrp.onContextEvent === 'function')
-	    							subscrp.call
-	    					}
-	    				}
-	    			}
-	    			
-	    		});
+				$(document).trigger(this.name, [arguments[0]]);
 	    	};
 	    	
 	    };
