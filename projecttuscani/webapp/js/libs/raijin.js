@@ -7,7 +7,7 @@
  *
  * @version 1.0.0.0
  */
-define('raijin',['require','underscore','jquery'], function( require ) {
+define('raijin',['require','underscore','jquery','blockui'], function( require ) {
 	 var _ = require('underscore'),
      $ = require('jquery');
 	 
@@ -117,8 +117,28 @@ define('raijin',['require','underscore','jquery'], function( require ) {
 				return viewmodels[name];
 			};
 			
-			this.getAllObjects = function(){
-				return _.union(models, views, viewmodels);
+			/*Functional*/
+			
+			
+			this.startBusyOn = function (element){
+				// Start Blocking Component
+				$('#' + element).block({
+					message: "&nbsp;",
+					css: {
+						padding:0, 	margin:0,			width:'40%',	top:'30%',
+						left:'35%',	cursor:'wait',		color:'#000',	border:'0px',
+						backgroundColor:'none',			textAlign:'center'
+					},
+					overlayCSS: { backgroundColor: '#ffffff', opacity:0.5, cursor:'wait' },
+					iframeSrc: /^https/i.test(window.location.href || '') ? 'javascript:false':'about:blank',
+					cursorReset:'default', forceIframe:false, baseZ:2000, centerX:true, centerY:true, allowBodyStretch:true,
+					bindEvents:true, constrainTabKey:true, fadeIn:200, fadeOut:200, timeout:0, showOverlay:true, focusInput:true,
+					onBlock:null, onUnblock:null, quirksmodeOffsetHack:4, blockMsgClass:'busyComponent', ignoreIfBlocked:false
+				});
+			};
+			
+			this.stopBusyOn = function (element){
+				$('#' + element).unblock();
 			};
 			
 			if( config ) {
