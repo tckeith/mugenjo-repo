@@ -14,7 +14,6 @@ define(['jquery', 'raijin'], function($, raijin)
 			
 			onContextEvent: function(event, data)
 			{
-				debugger;
 				event.data.publish(data);
 			}
 		});

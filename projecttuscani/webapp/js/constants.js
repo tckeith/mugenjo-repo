@@ -5,7 +5,7 @@ window.jin = {
 requirejs = 
 {
         baseUrl: 'js/',
-        urlArgs: 'v=1.1',
+        urlArgs: 'v='+Date.now(),
         paths:
         {
         	utils:'utils',

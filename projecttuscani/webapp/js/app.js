@@ -25,13 +25,17 @@ define(['jquery', 'backbone', 'underscore', 'raijin', 'utils', 'userInfoView', '
 		/*Instantiate the router */
         var app_router = new AppRouter();
         
-        app_router.on('route:showHome',function(){
+        /*Routes*/
+        app_router.on('route:showHome',_.debounce(function(){
         	
-        	var userInfoV = new UserInfoView.instance({name: "UserInfoView", controller: userVM, subscriptions: ['UserInfoViewModel'], el : "#Containter"});
+        	var userInfoV = UserInfoView.instance({
+        		name: "UserInfoView", 
+        		controller: userVM, 
+        		subscriptions: ['UserInfoViewModel'], 
+        		el : "#center-panel"
+        	});
         	
-        	raijin.addView(userInfoV);
-        	
-        });
+        }, 1000, true));
 		
         
         $(document).ready(function(){

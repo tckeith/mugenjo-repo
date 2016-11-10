@@ -28,6 +28,7 @@ define('raijin',['require','underscore','jquery'], function( require ) {
 				
 				var results = [];
 				
+				model['type'] = "m";
 				model['publish'] = eventHub.postEvent;
 
 		    	if( arguments.length === 1 && _.isArray(model) ) {
@@ -44,6 +45,8 @@ define('raijin',['require','underscore','jquery'], function( require ) {
 	    		}
 	    		
 	    		eventHub.subscribeEvents.apply(eventHub, arguments);
+	    		
+	    		mod['status'] = 'initialized';
 	    	    		
 		    	return mod;
 			};
@@ -52,6 +55,7 @@ define('raijin',['require','underscore','jquery'], function( require ) {
 				var idx, maxIdx, vm,
 	    		results = [];
 				
+				viewmodel['type'] = "vm";
 				viewmodel['publish'] = eventHub.postEvent;
 
 		    	if( arguments.length === 1 && _.isArray( viewmodel ) ) {
@@ -68,6 +72,8 @@ define('raijin',['require','underscore','jquery'], function( require ) {
 		    	};
 		    	
 		    	eventHub.subscribeEvents.apply(eventHub, arguments);
+		    	
+		    	vm['status'] = 'initialized';
 
 		    	return arguments.length === 1 ? results[0] : results;
 			};
@@ -77,6 +83,7 @@ define('raijin',['require','underscore','jquery'], function( require ) {
 	    		results = [];
 				
 				//view['publish'] = eventHub.postEvent;
+				view['type'] = "v";
 
 		    	if( arguments.length === 1 && _.isArray( view ) ) {
 		    		return this.addView.apply( this, view );
@@ -90,6 +97,8 @@ define('raijin',['require','underscore','jquery'], function( require ) {
 
 		    		results.push(vw);
 		    	};
+		    	
+		    	vw['status'] = 'initialized';
 
 				eventHub.subscribeEvents.apply(eventHub, arguments);
 				
@@ -106,6 +115,10 @@ define('raijin',['require','underscore','jquery'], function( require ) {
 			
 			this.getViewModel = function ( name ){
 				return viewmodels[name];
+			};
+			
+			this.getAllObjects = function(){
+				return _.union(models, views, viewmodels);
 			};
 			
 			if( config ) {

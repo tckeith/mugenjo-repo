@@ -9,12 +9,13 @@ define(function(require) {
             initialize : function(args) {
             	self = _.extend(this,args);
             	
+            	raijin.addView(self);
+            	
             	self.controller.fetch();
 
             },
             
             onContextEvent: function(event, data){
-            	debugger;
             	self.render();
             },
             
@@ -24,7 +25,7 @@ define(function(require) {
             },
             
             events : {
-            },
+            }
 
         });
 
