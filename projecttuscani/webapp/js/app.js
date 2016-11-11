@@ -1,6 +1,6 @@
 //define(function (require) {
-define(['jquery', 'backbone', 'underscore', 'raijin', 'utils', 'userInfoView', 'userInfoModel', 'userInfoViewModel'],
-		function($, Backbone, _, raijin, utils, UserInfoView, UserInfoModel, UserInfoViewModel) {
+define(['jquery', 'backbone', 'underscore', 'raijin', 'utils', 'toastr', 'FooterView', 'userInfoView', 'userInfoModel', 'userInfoViewModel'],
+		function($, Backbone, _, raijin, utils, toastr, FooterView, UserInfoView, UserInfoModel, UserInfoViewModel) {
 	
 	
 	$(function(){
@@ -10,11 +10,10 @@ define(['jquery', 'backbone', 'underscore', 'raijin', 'utils', 'userInfoView', '
 		var userInfoM = new UserInfoModel.instance({name: "UserInfoModel"});
     	raijin.addModel(userInfoM);
     	
-    	
     	var userVM = new UserInfoViewModel.instance({name: "UserInfoViewModel", domain : 'UserInfoModel', subscriptions: ['UserInfoModel']});
     	raijin.addViewModel(userVM);
 		
-		
+    	
 		var AppRouter = Backbone.Router.extend({
 			routes : {
 				'': 'showHome',
@@ -42,8 +41,13 @@ define(['jquery', 'backbone', 'underscore', 'raijin', 'utils', 'userInfoView', '
         	
         	if (!Backbone.History.started){   Backbone.history.start();	}
         	
+        	//Set Footer
+        	FooterView.instance({name:"FooterViews", el:"#footers"});
+        	
         	//if (window.location.hash === ''){   window.location = '#home';	}else{	Backbone.history.loadUrl(Backbone.history.fragment);   }
-			
+        	
+        	jin.utils.documentReady(raijin, toastr);
+        	
 			/*cache clear*/
 			$.ajaxSetup({ cache: false });
         	

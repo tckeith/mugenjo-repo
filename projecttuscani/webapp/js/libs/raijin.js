@@ -28,7 +28,9 @@ define('raijin',['require','underscore','jquery','blockui'], function( require )
 				
 				var results = [];
 				
-				model['type'] = "m";
+				if(models[model['name']])
+					throw new Error("Models must have a unique name property");
+				
 				model['publish'] = eventHub.postEvent;
 
 		    	if( arguments.length === 1 && _.isArray(model) ) {
@@ -44,7 +46,8 @@ define('raijin',['require','underscore','jquery','blockui'], function( require )
 	    			results.push(mod);
 	    		}
 	    		
-	    		eventHub.subscribeEvents.apply(eventHub, arguments);
+	    		if(model['subscriptions'])
+	    			eventHub.subscribeEvents.apply(eventHub, arguments);
 	    		
 	    		mod['status'] = 'initialized';
 	    	    		
@@ -55,7 +58,9 @@ define('raijin',['require','underscore','jquery','blockui'], function( require )
 				var idx, maxIdx, vm,
 	    		results = [];
 				
-				viewmodel['type'] = "vm";
+				if(viewmodels[viewmodel['name']])
+					throw new Error("View Models must have a unique name property");
+				
 				viewmodel['publish'] = eventHub.postEvent;
 
 		    	if( arguments.length === 1 && _.isArray( viewmodel ) ) {
@@ -71,7 +76,8 @@ define('raijin',['require','underscore','jquery','blockui'], function( require )
 		    		results.push(vm);
 		    	};
 		    	
-		    	eventHub.subscribeEvents.apply(eventHub, arguments);
+		    	if(viewmodel['subscriptions'])
+		    		eventHub.subscribeEvents.apply(eventHub, arguments);
 		    	
 		    	vm['status'] = 'initialized';
 
@@ -82,9 +88,9 @@ define('raijin',['require','underscore','jquery','blockui'], function( require )
 				var idx, maxIdx, vw,
 	    		results = [];
 				
-				//view['publish'] = eventHub.postEvent;
-				view['type'] = "v";
-
+				if(views[view['name']])
+					throw new Error("View Models must have a unique name property");
+				
 		    	if( arguments.length === 1 && _.isArray( view ) ) {
 		    		return this.addView.apply( this, view );
 		    	}
@@ -100,6 +106,7 @@ define('raijin',['require','underscore','jquery','blockui'], function( require )
 		    	
 		    	vw['status'] = 'initialized';
 
+		    	if(view['subscriptions'])
 				eventHub.subscribeEvents.apply(eventHub, arguments);
 				
 		    	return arguments.length === 1 ? results[0] : results;
@@ -118,8 +125,6 @@ define('raijin',['require','underscore','jquery','blockui'], function( require )
 			};
 			
 			/*Functional*/
-			
-			
 			this.startBusyOn = function (element){
 				// Start Blocking Component
 				$('#' + element).block({
@@ -129,7 +134,7 @@ define('raijin',['require','underscore','jquery','blockui'], function( require )
 						left:'35%',	cursor:'wait',		color:'#000',	border:'0px',
 						backgroundColor:'none',			textAlign:'center'
 					},
-					overlayCSS: { backgroundColor: '#ffffff', opacity:0.5, cursor:'wait' },
+					overlayCSS: { backgroundColor: '#ffffff', opacity:0, cursor:'wait' },
 					iframeSrc: /^https/i.test(window.location.href || '') ? 'javascript:false':'about:blank',
 					cursorReset:'default', forceIframe:false, baseZ:2000, centerX:true, centerY:true, allowBodyStretch:true,
 					bindEvents:true, constrainTabKey:true, fadeIn:200, fadeOut:200, timeout:0, showOverlay:true, focusInput:true,
@@ -140,6 +145,14 @@ define('raijin',['require','underscore','jquery','blockui'], function( require )
 			this.stopBusyOn = function (element){
 				$('#' + element).unblock();
 			};
+			
+			this.onError = function (error){
+				
+				alert('test');
+				
+			};
+			
+			window.addEventListener('error', this.onError);
 			
 			if( config ) {
 	            for( key in config ) {

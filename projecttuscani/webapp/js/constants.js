@@ -5,7 +5,7 @@ window.jin = {
 requirejs = 
 {
         baseUrl: 'js/',
-        urlArgs: 'v='+Date.now(),
+        urlArgs: 'v=1.1',
         paths:
         {
         	utils:'utils',
@@ -20,6 +20,7 @@ requirejs =
         	backbone: 'libs/backbone',
         	underscore: 'libs/underscore',
         	blockui: 'libs/blockui',
+        	toastr: 'libs/toastr',
         		
         	//models
         	userInfoModel: 'model/userInfoModel',
@@ -29,6 +30,7 @@ requirejs =
         		
         	//view
         	userInfoView: 'view/userInfoView',
+        	FooterView: 'view/FooterView'
         },
         shim : {
         	bootstrap: {deps: ['jquery']},

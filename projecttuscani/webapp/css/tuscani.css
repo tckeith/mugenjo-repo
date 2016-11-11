@@ -4,8 +4,10 @@ Scrollbar
 */
 
 *{
-	font-family : 'Leoscar Sans Serif';
+	font-family : 'Leoscar Sans Serif', 'Leoscar Serif', sans-serif;
+	color : #838383;
 }
+
 
 body::-webkit-scrollbar-track
 {
@@ -29,6 +31,11 @@ body::-webkit-scrollbar-thumb
 
 body{
 	background:#131313;
+	
+}
+
+.master-container{
+	padding: 10px;
 }
 
 header {

@@ -92,6 +92,38 @@ jin.utils = {
 		        	}
 		        	console.logs("onRetrieveDataFromServer : AJAX Request - Method : " + methodType + "::URL : " + url + ": Request failed-" + e, 'ERROR');
 	            }
+	    },
+	    
+	    custom: function()
+	    {
+	    	
+	    },
+	    
+	    documentReady: function(raijin, toastr)
+	    {
+	    	//apply custom jquery functions
+	    	jin.utils.custom();
+	    	
+	    	//setup toastr option
+	    	toastr.options = {
+					  "closeButton": true,
+					  "debug": false,
+					  "newestOnTop": true,
+					  "progressBar": true,
+					  "positionClass": "toast-top-center",
+					  "preventDuplicates": false,
+					  "onclick": null,
+					  "showDuration": "100",
+					  "hideDuration": "1000",
+					  "timeOut": "3000",
+					  "extendedTimeOut": "1000",
+					  "showEasing": "swing",
+					  "hideEasing": "linear",
+					  "showMethod": "fadeIn",
+					  "hideMethod": "fadeOut"
+			};
+	    	
 	    }
+	    
 		
 };
