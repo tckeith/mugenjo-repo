@@ -33,7 +33,7 @@
 
 	<!-- scan for mappers and let them be autowired -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.fol.frf.learningmap.DAO.mappers" />
+		<property name="basePackage" value="com.limitless.DAO.mappers" />
 	</bean>
 
 

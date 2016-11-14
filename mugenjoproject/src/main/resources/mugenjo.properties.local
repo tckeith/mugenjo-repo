@@ -1,5 +1,5 @@
 #DB Credentials
-mugen.db.url=localhost
-mugen.db.user=raijin
+mugen.db.url=jdbc:mysql://localhost
+mugen.db.user=RAIJIN
 mugen.db.password=enkeiraijin
 

@@ -11,8 +11,8 @@ public class UserModel {
 	private Integer roleId;
 	private String password;
 	private Integer statusId;
-	private Date createData;
-	private Date lastModifiedData;
+	private Date createDate;
+	private Date lastModifiedDate;
 	
 	public String getUID() {
 		return UID;
@@ -56,17 +56,17 @@ public class UserModel {
 	public void setStatusId(Integer statusId) {
 		this.statusId = statusId;
 	}
-	public Date getCreateData() {
-		return createData;
+	public Date getCreateDate() {
+		return createDate;
 	}
-	public void setCreateData(Date createData) {
-		this.createData = createData;
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
 	}
-	public Date getLastModifiedData() {
-		return lastModifiedData;
+	public Date getLastModifiedDate() {
+		return lastModifiedDate;
 	}
-	public void setLastModifiedData(Date lastModifiedData) {
-		this.lastModifiedData = lastModifiedData;
+	public void setLastModifiedDate(Date lastModifiedDate) {
+		this.lastModifiedDate = lastModifiedDate;
 	}
 	
 }
