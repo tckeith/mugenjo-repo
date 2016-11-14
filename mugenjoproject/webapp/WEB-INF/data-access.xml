@@ -16,14 +16,14 @@
 	<bean id="mysqlDatasource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
-		<property name="url" value="${center.connectionURL}" />
-		<property name="username" value="${userName}" />
-		<property name="password" value="${password}" />
+		<property name="url" value="${mugen.db.url}" />
+		<property name="username" value="${mugen.db.user}" />
+		<property name="password" value="${mugen.db.password}" />
 	</bean>
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="mysqlDatasource" />
-		<property name="configLocation" value="WEB-INF/dataSourceConfig.xml"></property>
+		<property name="configLocation" value="WEB-INF/data-config.xml"></property>
 	</bean>
 	
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
