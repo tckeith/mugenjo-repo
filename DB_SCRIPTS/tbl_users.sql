@@ -1,10 +1,10 @@
 USE mugenjo;
 
 CREATE TABLE `tbl_users` (
-  `UID` varchar(256) NOT NULL COMMENT 'User Id',
-  `UFNAME` varchar(256) NOT NULL,
-  `ULNAME` varchar(256) NOT NULL,
-  `UEMAIL` varchar(256) NOT NULL,
+  `UID` varchar(255) NOT NULL COMMENT 'User Id',
+  `UFNAME` varchar(255) NOT NULL,
+  `ULNAME` varchar(255) NOT NULL,
+  `UEMAIL` varchar(255) NOT NULL,
   `ROLEID` int(4) NOT NULL COMMENT 'User Role Id ',
   `STATUS` int(11) DEFAULT NULL COMMENT 'Online Status',
   `CREATE_DATE` datetime NOT NULL,

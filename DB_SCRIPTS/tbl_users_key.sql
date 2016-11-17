@@ -1,9 +1,13 @@
 USE mugenjo;
 
 CREATE TABLE `tbl_users_key` (
-  `UID` varchar(256) NOT NULL,
-  `PASSWORD` varchar(256) NOT NULL,
-  PRIMARY KEY (`UID`)
+  `UID` varchar(255) NOT NULL,
+  `PASSWORD` varchar(255) NOT NULL,
+  `CREATED_DATE` datetime DEFAULT NULL,
+  `LAST_MODIFIED_DATE` datetime DEFAULT NULL,
+  PRIMARY KEY (`UID`),
+  CONSTRAINT `FK_UID` FOREIGN KEY (`UID`) REFERENCES `tbl_users` (`UID`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
+insert into `tbl_users_key`(`UID`,`PASSWORD`,`CREATED_DATE`,`LAST_MODIFIED_DATE`) values ('f12a0fa4-aa89-11e6-b438-5ce0c5c68df0','f24af80590615aeaa695be82e0ef5ad8',null,null);
