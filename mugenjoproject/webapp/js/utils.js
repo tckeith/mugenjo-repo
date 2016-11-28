@@ -123,6 +123,16 @@ jin.utils = {
 					  "hideMethod": "fadeOut"
 			};
 	    	
+	    	var height = $('body').height() - $('#app-header').height() - $('footer').height() - 30
+   		 
+   		 	$('.content-container div').height(height);
+	    	
+	    	 $(window).on('resize', _.debounce(function() {
+	    		 var height = $('body').height() - $('#app-header').height() - $('footer').height() - 30
+	    		 
+	    		 $('.content-container div').height(height);
+	    	 },250));
+	    	
 	    }
 	    
 		

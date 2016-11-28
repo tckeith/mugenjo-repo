@@ -31,7 +31,9 @@ define(['jquery', 'backbone', 'underscore', 'raijin', 'utils', 'toastr', 'Footer
         		name: "UserInfoView", 
         		controller: userVM, 
         		subscriptions: ['UserInfoViewModel'], 
-        		el : "#center-panel"
+        		el : "#center-panel",
+        		left : $("#left-panel"),
+        		right : $("#right-panel")
         	});
         	
         }, 1000, true));

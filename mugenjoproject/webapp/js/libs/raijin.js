@@ -148,7 +148,7 @@ define('raijin',['require','underscore','jquery','blockui'], function( require )
 			
 			this.onError = function (error){
 				
-				alert('test');
+				alert(error);
 				
 			};
 			

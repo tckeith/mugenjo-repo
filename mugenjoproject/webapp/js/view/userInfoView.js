@@ -21,6 +21,8 @@ define(function(require) {
             
             render : function() {
                 self.$el.html(self.template());
+                self.left.html(self.template())
+                self.right.html(self.template())
                 return self;
             },
             
