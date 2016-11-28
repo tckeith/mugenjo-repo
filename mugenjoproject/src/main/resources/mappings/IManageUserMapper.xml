@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.limitless.DAO.mappers.IManageUserMapper">
+
+	<resultMap id="userResultMap" type="User">
+		<result property="UID" column="UID" />
+		<result property="fname" column="UFNAME" />
+		<result property="lname" column="ULANME" />
+		<result property="email" column="UEMAIL" />
+		<result property="roleId" column="ROLEID" />
+		<result property="statusId" column="STATUS" />
+		<result property="createDate" column="CREATE_DATE" />
+		<result property="lastModifiedDate" column="LAST_MODIFIED_DATE" />
+	
+	
+	</resultMap>
+	
+	<select id="requestUserInfo" resultMap="userResultMap" statementType="CALLABLE"> 
+		{(call MUGENJO.PRC_GETUSERDETAILS( 
+			#{UID,		jdbcType=VARCHAR, 		javaType=String, 		mode=IN}
+        )}
+	</select>	
+	
+	
+</mapper>

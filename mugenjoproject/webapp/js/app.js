@@ -1,6 +1,6 @@
 //define(function (require) {
-define(['jquery', 'backbone', 'underscore', 'raijin', 'utils', 'toastr', 'FooterView', 'userInfoView', 'userInfoModel', 'userInfoViewModel'],
-		function($, Backbone, _, raijin, utils, toastr, FooterView, UserInfoView, UserInfoModel, UserInfoViewModel) {
+define(['jquery', 'backbone', 'underscore', 'raijin', 'utils', 'toastr', 'testView', 'FooterView', 'UserInfoView', 'UserInfoModel', 'UserInfoViewModel'],
+		function($, Backbone, _, raijin, utils, toastr, testView, FooterView, UserInfoView, UserInfoModel, UserInfoViewModel) {
 	
 	
 	$(function(){
@@ -27,10 +27,10 @@ define(['jquery', 'backbone', 'underscore', 'raijin', 'utils', 'toastr', 'Footer
         /*Routes*/
         app_router.on('route:showHome',_.debounce(function(){
         	
-        	var userInfoV = UserInfoView.instance({
-        		name: "UserInfoView", 
-        		controller: userVM, 
-        		subscriptions: ['UserInfoViewModel'], 
+        	var testV = testView.instance({
+        		name: "TestView", 
+        		//controller: userVM, 
+        		//subscriptions: ['UserInfoViewModel'], 
         		el : "#center-panel",
         		left : $("#left-panel"),
         		right : $("#right-panel")
@@ -43,6 +43,9 @@ define(['jquery', 'backbone', 'underscore', 'raijin', 'utils', 'toastr', 'Footer
         	
         	if (!Backbone.History.started){   Backbone.history.start();	}
         	
+        	//
+        	UserInfoView.instance({name: "UserInfoView", controller: userVM, subscriptions: ['UserInfoViewModel'], el: ".user-info"});
+        	
         	//Set Footer
         	FooterView.instance({name:"FooterViews", el:"#footers"});
         	
@@ -53,7 +56,6 @@ define(['jquery', 'backbone', 'underscore', 'raijin', 'utils', 'toastr', 'Footer
 			/*cache clear*/
 			$.ajaxSetup({ cache: false });
         	
-        	console.log('document Ready');
         });
 	});
 	

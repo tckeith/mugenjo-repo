@@ -1,11 +1,9 @@
-DROP PROCEDURE IF EXISTS PRC_UPDATE_USER;
-CREATE PROCEDURE PRC_UPATE_USER (IN v_uid VARCHAR(255),
+DROP PROCEDURE IF EXISTS mugenjo.PRC_UPDATE_USER;
+CREATE PROCEDURE mugenjo.`PRC_UPDATE_USER`(IN v_uid VARCHAR(255),
                                  IN v_fname VARCHAR(255),
                                  IN v_lname VARCHAR(255),
                                  IN v_email VARCHAR(255),
                                  IN v_password VARCHAR(255))
-                                 
-
 BEGIN
 
 DECLARE t_uid VARCHAR(255);
@@ -29,18 +27,19 @@ DECLARE t_uid VARCHAR(255);
     SET t_uid = v_uid;
   
     UPDATE MUGENJO.TBL_USERS
-    SET LAST_MODIFIED_DATE = NOW(), UEMAIL = v_email
+    SET LAST_MODIFIED_DATE = NOW()
     WHERE UID = t_uid;
     
     IF v_password IS NOT NULL 
     THEN 
       UPDATE MUGENJO.TBL_USERS_KEY uk
       SET uk.LAST_MODIFIED_DATE = NOW(), uk.PASSWORD = v_password;
-    
-      SELECT UID, UFNAME, ULNAME, UEMAIL, UROLEID, CREATED_DATE, LAST_MODIFIED_DATE
-      FROM MUGENJO.TBL_USERS
-      WHERE UID = t_uid;
+          
     END IF;
+    
+    SELECT UID, UFNAME, ULNAME, UEMAIL, UROLEID, CREATED_DATE, LAST_MODIFIED_DATE
+    FROM MUGENJO.TBL_USERS
+    WHERE UID = t_uid;
     
   END IF; 
   	

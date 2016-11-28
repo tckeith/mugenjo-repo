@@ -17,6 +17,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 
 	<mappers>
 		<mapper resource="mappings/ITestMapper.xml" />
+		<mapper resource="mappings/IManageUserMapper.xml" />
 	</mappers>
 
 </configuration>

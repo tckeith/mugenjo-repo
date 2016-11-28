@@ -123,12 +123,14 @@ jin.utils = {
 					  "hideMethod": "fadeOut"
 			};
 	    	
+	    	
+	    	/*Resize content panels*/
 	    	var height = $('body').height() - $('#app-header').height() - $('footer').height() - 30
    		 
    		 	$('.content-container div').height(height);
 	    	
 	    	 $(window).on('resize', _.debounce(function() {
-	    		 var height = $('body').height() - $('#app-header').height() - $('footer').height() - 30
+	    		 var height = $('body').height() - $('header').height() - $('footer').height() - 30
 	    		 
 	    		 $('.content-container div').height(height);
 	    	 },250));

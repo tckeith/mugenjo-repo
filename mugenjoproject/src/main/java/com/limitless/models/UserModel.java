@@ -14,6 +14,7 @@ public class UserModel {
 	private Date createDate;
 	private Date lastModifiedDate;
 	
+	
 	public String getUID() {
 		return UID;
 	}

@@ -1,6 +1,6 @@
 define(function(require) {
     require('raijin');
-    var template = require('text!../templates/FooterView.html');
+    var template = require('text!../templates/master/UserInfoView.html');
     function instance(args) {
 
         var self,
@@ -11,16 +11,17 @@ define(function(require) {
             	
             	raijin.addView(self);
             	
-            	self.render();
+            	self.controller.fetch();
 
             },
             
             onContextEvent: function(event, data){
-            	
+            	self.render();
             },
             
             render : function() {
                 self.$el.html(self.template());
+               
                 return self;
             },
             

@@ -23,14 +23,15 @@ requirejs =
         	toastr: 'libs/toastr',
         		
         	//models
-        	userInfoModel: 'model/userInfoModel',
+        	UserInfoModel: 'model/UserInfoModel',
         		
         	//viewmodels
-        	userInfoViewModel: 'viewmodel/userInfoViewModel',	
+        	UserInfoViewModel: 'viewmodel/UserInfoViewModel',	
         		
         	//view
-        	userInfoView: 'view/userInfoView',
-        	FooterView: 'view/FooterView'
+        	testView: 'view/testView',
+        	UserInfoView: 'view/UserInfoView',
+        	FooterView: 'view/master/FooterView'
         },
         shim : {
         	bootstrap: {deps: ['jquery']},
