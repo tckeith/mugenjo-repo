@@ -19,10 +19,17 @@
 	</resultMap>
 	
 	<select id="requestUserInfo" resultMap="userResultMap" statementType="CALLABLE"> 
-		{call MUGENJO.PKG_MANAGEUSER_PRC_GETUSERDETAILS( 
+		{call MUGENJO.`PKG_MANAGEUSER.PRC_GETUSERDETAILS`( 
 			#{UID,		jdbcType=VARCHAR, 		javaType=String, 		mode=IN}
         )}
 	</select>	
+	
+	<select id="validateLogin" resultMap="userResultMap" statementType="CALLABLE"> 
+		{call mugenjo.`PKG_MANAGEUSER.PRC_VALIDATELOGIN`( 
+			#{email,		jdbcType=VARCHAR, 		javaType=String, 		mode=IN},
+			#{pwd,		jdbcType=VARCHAR, 		javaType=String, 		mode=IN}
+        )}
+	</select>
 	
 	
 </mapper>

@@ -6,4 +6,6 @@ public interface IManageUserDAO {
 	
 	public UserModel requestUserInfo (String UID);
 
+	public UserModel validateLogin(UserModel user);
+
 }

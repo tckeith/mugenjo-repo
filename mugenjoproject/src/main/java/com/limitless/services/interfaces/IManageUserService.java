@@ -5,5 +5,7 @@ import com.limitless.models.UserModel;
 public interface IManageUserService {
 
 	public UserModel requestUserInfo();
+
+	UserModel validateLogin(UserModel user);
 	
 }

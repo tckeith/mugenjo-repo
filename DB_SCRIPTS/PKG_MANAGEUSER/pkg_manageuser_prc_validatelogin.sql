@@ -1,0 +1,11 @@
+DROP PROCEDURE IF EXISTS mugenjo.`PKG_MANAGEUSER.PRC_VALIDATELOGIN`;
+CREATE PROCEDURE mugenjo.`PKG_MANAGEUSER.PRC_VALIDATELOGIN`(IN v_email VARCHAR(255), 
+                                                     IN v_password varchar(255))
+BEGIN
+
+  SELECT U.UID, U.UFNAME, U.ULNAME, U.UEMAIL, U.ROLEID, U.CREATED_DATE, U.LAST_MODIFIED_DATE
+  FROM tbl_users U INNER JOIN tbl_users_key UK ON U.UID = UK.UID
+  WHERE U.UEMAIL = v_email
+  AND UK.PASSWORD = v_password;
+	
+END;

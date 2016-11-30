@@ -26,5 +26,10 @@ public class ManageUserService implements IManageUserService {
 		return userDAO.requestUserInfo(currentUser);
 		
 	}
+	
+	@Override
+	public UserModel validateLogin(UserModel user){
+		return userDAO.validateLogin(user);
+	}
 
 }

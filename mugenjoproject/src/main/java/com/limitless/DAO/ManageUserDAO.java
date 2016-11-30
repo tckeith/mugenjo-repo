@@ -24,5 +24,15 @@ public class ManageUserDAO implements IManageUserDAO {
 		
 		return userMap.requestUserInfo(request);
 	}
+	
+	@Override
+	public UserModel validateLogin(UserModel user){
+		Map<String, Object> request = new HashMap<String, Object>();
+		
+		request.put("email", user.getEmail());
+		request.put("pwd", user.getPassword());
+		
+		return userMap.validateLogin(request);
+	}
 
 }
