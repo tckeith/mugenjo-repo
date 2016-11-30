@@ -8,18 +8,18 @@
 	<resultMap id="userResultMap" type="User">
 		<result property="UID" column="UID" />
 		<result property="fname" column="UFNAME" />
-		<result property="lname" column="ULANME" />
+		<result property="lname" column="ULNAME" />
 		<result property="email" column="UEMAIL" />
 		<result property="roleId" column="ROLEID" />
 		<result property="statusId" column="STATUS" />
-		<result property="createDate" column="CREATE_DATE" />
+		<result property="createDate" column="CREATED_DATE" />
 		<result property="lastModifiedDate" column="LAST_MODIFIED_DATE" />
 	
 	
 	</resultMap>
 	
 	<select id="requestUserInfo" resultMap="userResultMap" statementType="CALLABLE"> 
-		{(call MUGENJO.PRC_GETUSERDETAILS( 
+		{call MUGENJO.PKG_MANAGEUSER_PRC_GETUSERDETAILS( 
 			#{UID,		jdbcType=VARCHAR, 		javaType=String, 		mode=IN}
         )}
 	</select>	

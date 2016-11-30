@@ -19,7 +19,7 @@ public class IdentityUtil {
 			 ri = RequestIdentityManager.createRequestIdentity();
 			 
 			 if(ri == null)
-				return new RequestIdentity("Guest").getUser();
+				return new RequestIdentity(Constants.GUESTID).getUser();
 			
 		}catch(MissingIdentityException e){
 			

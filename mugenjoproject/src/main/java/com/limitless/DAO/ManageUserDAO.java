@@ -22,9 +22,7 @@ public class ManageUserDAO implements IManageUserDAO {
 		
 		request.put("UID", UID);
 		
-		userMap.requestUserInfo(request);
-		
-		return null;
+		return userMap.requestUserInfo(request);
 	}
 
 }
