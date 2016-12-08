@@ -89,7 +89,7 @@ define('raijin',['require','underscore','jquery','blockui'], function( require )
 	    		results = [];
 				
 				if(views[view['name']])
-					throw new Error("View Models must have a unique name property");
+					throw new Error("View Models must have a unique name property["+view['name']+"]");
 				
 		    	if( arguments.length === 1 && _.isArray( view ) ) {
 		    		return this.addView.apply( this, view );
@@ -148,7 +148,7 @@ define('raijin',['require','underscore','jquery','blockui'], function( require )
 			
 			this.onError = function (error){
 				
-				alert(error);
+				alert(error.message);
 				
 			};
 			

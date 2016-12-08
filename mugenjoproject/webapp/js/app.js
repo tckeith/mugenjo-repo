@@ -1,6 +1,6 @@
 //define(function (require) {
-define(['jquery', 'backbone', 'underscore', 'raijin', 'utils', 'toastr', 'testView', 'FooterView', 'UserInfoView', 'UserInfoModel', 'UserInfoViewModel'],
-		function($, Backbone, _, raijin, utils, toastr, testView, FooterView, UserInfoView, UserInfoModel, UserInfoViewModel) {
+define(['jquery', 'backbone', 'underscore', 'raijin', 'utils', 'toastr', 'testView', 'FooterView', 'UserInfoView', 'UserInfoModel', 'UserInfoViewModel', 'UserLoginView'],
+		function($, Backbone, _, raijin, utils, toastr, testView, FooterView, UserInfoView, UserInfoModel, UserInfoViewModel, UserLoginView) {
 	
 	
 	$(function(){
@@ -17,7 +17,8 @@ define(['jquery', 'backbone', 'underscore', 'raijin', 'utils', 'toastr', 'testVi
 		var AppRouter = Backbone.Router.extend({
 			routes : {
 				'': 'showHome',
-				'home': 'showHome'
+				'home': 'showHome',
+				'signon': 'login'
 			}
 		});
 		
@@ -29,11 +30,20 @@ define(['jquery', 'backbone', 'underscore', 'raijin', 'utils', 'toastr', 'testVi
         	
         	var testV = testView.instance({
         		name: "TestView", 
-        		//controller: userVM, 
-        		//subscriptions: ['UserInfoViewModel'], 
         		el : "#center-panel",
         		left : $("#left-panel"),
         		right : $("#right-panel")
+        	});
+        	
+        }, 1000, true));
+        
+        app_router.on('route:login', _.debounce(function(){
+        	
+        	UserLoginView.instance({
+        		name: "UserLoginView",
+        		controller: userVM,
+        		subscriptions: ["UserInfoViewModel"],
+        		el: "#center-panel"
         	});
         	
         }, 1000, true));
@@ -43,11 +53,11 @@ define(['jquery', 'backbone', 'underscore', 'raijin', 'utils', 'toastr', 'testVi
         	
         	if (!Backbone.History.started){   Backbone.history.start();	}
         	
-        	//
+        	//User information panel
         	UserInfoView.instance({name: "UserInfoView", controller: userVM, subscriptions: ['UserInfoViewModel'], el: ".user-info"});
         	
         	//Set Footer
-        	FooterView.instance({name:"FooterViews", el:"#footers"});
+        	FooterView.instance({name:"FooterView", el:"#footers"});
         	
         	//if (window.location.hash === ''){   window.location = '#home';	}else{	Backbone.history.loadUrl(Backbone.history.fragment);   }
         	
