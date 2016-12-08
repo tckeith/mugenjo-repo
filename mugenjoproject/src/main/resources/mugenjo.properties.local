@@ -3,3 +3,5 @@ mugen.db.url=jdbc:mysql://localhost
 mugen.db.user=RAIJIN
 mugen.db.password=enkeiraijin
 
+
+limitless.identity.header:_identity

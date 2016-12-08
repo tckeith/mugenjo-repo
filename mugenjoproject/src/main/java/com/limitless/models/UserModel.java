@@ -15,6 +15,16 @@ public class UserModel {
 	private Date lastModifiedDate;
 	
 	
+	public UserModel(){
+		super();
+	}
+	
+	public UserModel(String uid, String fname, String lname){
+		this.UID = uid;
+		this.fname = fname;
+		this.lname = lname;
+	}
+	
 	public String getUID() {
 		return UID;
 	}

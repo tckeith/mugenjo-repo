@@ -1,5 +1,8 @@
 package com.limitless.controllers;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -30,14 +33,18 @@ public class ManageUserController {
 		return new ResponseEntity<UserModel>(user, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	@ResponseBody
-	public final ResponseEntity<?> login(@RequestBody UserModel user){
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public final ResponseEntity<?> login(@RequestBody UserModel user,  HttpServletResponse response){
 		
 		UserModel validatedUser = userService.validateLogin(user);
 		
-		if(validatedUser != null)
+		if(validatedUser != null && validatedUser.getUID() != null){
+			Cookie _identity = new Cookie(Constants.REQUESTHEAD, validatedUser.getUID());
+				_identity.setMaxAge(Constants.COOKIEEXPIRY);
+			response.addCookie(_identity);
 			return new ResponseEntity<UserModel>(validatedUser, HttpStatus.OK);
+		}
 		else
 			return new ResponseEntity<Object>(Constants.LOGINFAILED, HttpStatus.UNAUTHORIZED);
 	}

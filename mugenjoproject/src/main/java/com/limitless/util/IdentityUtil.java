@@ -16,7 +16,7 @@ public class IdentityUtil {
 		
 		try{
 			
-			 ri = RequestIdentityManager.createRequestIdentity();
+			 ri = RequestIdentityManager.getManager().createRequestIdentity();
 			 
 			 if(ri == null)
 				return new RequestIdentity(Constants.GUESTID).getUser();

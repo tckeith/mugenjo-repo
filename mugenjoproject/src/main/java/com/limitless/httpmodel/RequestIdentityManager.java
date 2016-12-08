@@ -12,8 +12,22 @@ import com.limitless.models.RequestIdentity;
 public class RequestIdentityManager {
 
 	private static Logger log = Logger.getLogger(RequestIdentityManager.class.getName());
+	
+	private String requestIdentityHeader;
+	
+	private static RequestIdentityManager rim = null;
+	
+	
+	public RequestIdentityManager()
+	{
+		super();
+	}
+	
+	public RequestIdentityManager(String requestHeader){
+		this.requestIdentityHeader = requestHeader;
+	}
 
-	public static RequestIdentity createRequestIdentity() {
+	public RequestIdentity createRequestIdentity() {
 		log.debug("Processing caller's identity in NTLMIdentityCreator");
 
 		ServletExternalContext context = HeaderInitFilter.getServletExternalContext();
@@ -32,7 +46,7 @@ public class RequestIdentityManager {
 
 		if (cookies != null) {
 			for (Cookie co : cookies) {
-				if (co.getName().equals("_identity")) {
+				if (co.getName().equals(requestIdentityHeader)) {
 					principal = co.getValue().toUpperCase();
 				}
 			}
@@ -54,6 +68,20 @@ public class RequestIdentityManager {
 		}
 
 		return info;
+	}
+	
+	public static void init(String requestIdentityHeader)
+	{
+		rim = new RequestIdentityManager(requestIdentityHeader);
+	}
+	
+	
+	public static synchronized RequestIdentityManager getManager(){
+		
+		if(rim == null)
+			rim = new RequestIdentityManager();
+		
+		return rim;
 	}
 
 }

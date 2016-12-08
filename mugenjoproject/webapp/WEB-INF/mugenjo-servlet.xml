@@ -33,10 +33,15 @@
 		</property>
 		<property name="ignoreUnresolvablePlaceholders" value="true" />
 	</bean>
-
-	<!-- <bean id="propertyUtil" class="com.fol.gateway.util.PropertyUtil"> 
-		<property name="propertiesPath" value="${ga.properties.path}.${app_env}" 
-		/> </bean> -->
+	
+	<bean id="init-RequestIdentityManger" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="staticMethod" value="com.limitless.httpmodel.RequestIdentityManager.init"/>
+		<property name="arguments" value="${limitless.identity.header}"/>
+	</bean>
+	
+	 <bean id="systemProperties" class="com.limitless.util.SYS"> 
+		<property name="propPath" value="${mugen.properties.path}.${app_env}"/> 
+	 </bean>
 
 	<!-- Enabling Filters -->
 	<bean id="headerInitFilter" class="com.limitless.httpmodel.filter.HeaderInitFilter" />

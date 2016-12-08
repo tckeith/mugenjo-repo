@@ -1,6 +1,8 @@
 define(function(require) {
     require('raijin');
+    
     var template = require('text!../templates/master/UserInfoView.html');
+    
     function instance(args) {
 
         var self,
@@ -16,11 +18,12 @@ define(function(require) {
             },
             
             onContextEvent: function(event, data){
+            	self.data = data;
             	self.render();
             },
             
             render : function() {
-                self.$el.html(self.template());
+                self.$el.html(self.template(self.data));
                
                 return self;
             },

@@ -39,3 +39,11 @@ requirejs =
 
 };
 
+
+/*Client-side global variables*/
+GUESTACCOUNT = {
+	"fname": "Guest",
+	"lname": "User",
+	"uid": "33e9232989576b5cfaa06654217d7a1a"
+}
+
