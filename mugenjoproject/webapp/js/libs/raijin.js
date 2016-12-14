@@ -29,7 +29,7 @@ define('raijin',['require','underscore','jquery','blockui'], function( require )
 				var results = [];
 				
 				if(models[model['name']])
-					throw new Error("Models must have a unique name property");
+					return;
 				
 				model['publish'] = eventHub.postEvent;
 
@@ -59,7 +59,7 @@ define('raijin',['require','underscore','jquery','blockui'], function( require )
 	    		results = [];
 				
 				if(viewmodels[viewmodel['name']])
-					throw new Error("View Models must have a unique name property");
+					return;
 				
 				viewmodel['publish'] = eventHub.postEvent;
 
@@ -89,7 +89,7 @@ define('raijin',['require','underscore','jquery','blockui'], function( require )
 	    		results = [];
 				
 				if(views[view['name']])
-					throw new Error("View Models must have a unique name property["+view['name']+"]");
+					return;
 				
 		    	if( arguments.length === 1 && _.isArray( view ) ) {
 		    		return this.addView.apply( this, view );
@@ -148,7 +148,7 @@ define('raijin',['require','underscore','jquery','blockui'], function( require )
 			
 			this.onError = function (error){
 				
-				alert(error.message);
+				console.log(error.message);
 				
 			};
 			
