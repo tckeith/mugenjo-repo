@@ -1,6 +1,8 @@
 //define(function (require) {
-define(['jquery', 'backbone', 'underscore', 'raijin', 'utils', 'toastr', 'testView', 'FooterView', 'UserInfoView', 'UserInfoModel', 'UserInfoViewModel', 'UserLoginView'],
-		function($, Backbone, _, raijin, utils, toastr, testView, FooterView, UserInfoView, UserInfoModel, UserInfoViewModel, UserLoginView) {
+define(['jquery', 'backbone', 'underscore', 'raijin', 'utils', 'toastr', 'CryptoJS',
+	    'testView', 'FooterView', 'UserInfoView', 'UserInfoModel', 'UserInfoViewModel', 'UserLoginView'],
+		function($, Backbone, _, raijin, utils, toastr, CryptoJS,
+				testView, FooterView, UserInfoView, UserInfoModel, UserInfoViewModel, UserLoginView) {
 	
 	
 	$(function(){
@@ -61,7 +63,7 @@ define(['jquery', 'backbone', 'underscore', 'raijin', 'utils', 'toastr', 'testVi
         	
         	//if (window.location.hash === ''){   window.location = '#home';	}else{	Backbone.history.loadUrl(Backbone.history.fragment);   }
         	
-        	jin.utils.documentReady(raijin, toastr);
+        	jin.utility.documentReady(raijin, toastr);
         	
 			/*cache clear*/
 			$.ajaxSetup({ cache: false });

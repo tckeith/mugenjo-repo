@@ -1,5 +1,5 @@
 window.jin = {
-	utils : {}
+	utility : {}
 };
 
 requirejs = 
@@ -8,7 +8,7 @@ requirejs =
         urlArgs: 'v=1.1',
         paths:
         {
-        	utils:'utils',
+        	utils:'utility',
         	raijin:'libs/raijin',
         	
         	/*dependencies*/
@@ -21,6 +21,7 @@ requirejs =
         	underscore: 'libs/underscore',
         	blockui: 'libs/blockui',
         	toastr: 'libs/toastr',
+        	CryptoJS: 'libs/cryptoJS_MD5',
         		
         	//models
         	UserInfoModel: 'model/master/UserInfoModel',

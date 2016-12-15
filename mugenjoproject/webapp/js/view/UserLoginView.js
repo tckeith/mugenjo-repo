@@ -13,6 +13,8 @@ define(function(require) {
             	
             	raijin.addView(self);
             	
+            	jin.utility.emptyPanels()
+            	
             	self.render();
             	
             },
@@ -28,8 +30,21 @@ define(function(require) {
             },
             
             events : {
-            	
+            	"click .login" : "validateLogIn",
+            	"keyup input[name='signon-email']" : "onEnter",
+            	"keyup input[name='signon-pass']" : "onEnter"
+            },
+            
+            onEnter : function(e){
+            	if(e.keyCode == 13) self.validateLogIn();
+            },
+            
+            validateLogIn : function(){
+            	var email = $("input[name='signon-email']").val();
+            	var password = CryptoJS.MD5($("input[name='signon-pass']").val()).toString();
+            		debugger;
             }
+            
             
         });
 

@@ -1,4 +1,4 @@
-jin.utils = {
+jin.utility = {
 		
 		CommunicationManager: function(data, callback)
 	    {
@@ -94,6 +94,18 @@ jin.utils = {
 	            }
 	    },
 	    
+	    emptyPanels: function(){
+	    	$('#left-panel,#right-panel,#center-panel').empty();
+	    },
+	    
+	    /*Resize content panels
+   	 	(-50) accouts for to and bottom padding*/
+	    resizePanels: function(){
+	    	var height = $('body').height() - $('header').height() - $('footer').height() - 50
+	   		 
+   		 	$('.content-container div[attr="panel"]').height(height);
+	    },
+	    
 	    custom: function()
 	    {
 	    	
@@ -102,7 +114,7 @@ jin.utils = {
 	    documentReady: function(raijin, toastr)
 	    {
 	    	//apply custom jquery functions
-	    	jin.utils.custom();
+	    	jin.utility.custom();
 	    	
 	    	//setup toastr option
 	    	toastr.options = {
@@ -123,17 +135,9 @@ jin.utils = {
 					  "hideMethod": "fadeOut"
 			};
 	    	
+	    	jin.utility.resizePanels();
 	    	
-	    	/*Resize content panels*/
-	    	var height = $('body').height() - $('#app-header').height() - $('footer').height() - 30
-   		 
-   		 	$('.content-container div').height(height);
-	    	
-	    	 $(window).on('resize', _.debounce(function() {
-	    		 var height = $('body').height() - $('header').height() - $('footer').height() - 30
-	    		 
-	    		 $('.content-container div').height(height);
-	    	 },250));
+	    	 $(window).on('resize', _.debounce(jin.utility.resizePanels,250));
 	    	
 	    }
 	    

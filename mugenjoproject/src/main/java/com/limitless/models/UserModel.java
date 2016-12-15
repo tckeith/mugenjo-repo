@@ -5,6 +5,7 @@ import java.sql.Date;
 public class UserModel {
 	
 	private String UID;
+	private String displyId;
 	private String fname;
 	private String lname;
 	private String email;
@@ -30,6 +31,12 @@ public class UserModel {
 	}
 	public void setUID(String uID) {
 		UID = uID;
+	}
+	public String getDisplyId() {
+		return displyId;
+	}
+	public void setDisplyId(String displyId) {
+		this.displyId = displyId;
 	}
 	public String getFname() {
 		return fname;
