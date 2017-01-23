@@ -23,9 +23,6 @@ requirejs =
         	toastr: 'libs/toastr',
         	CryptoJS: 'libs/cryptoJS_MD5',
         		
-        	//models
-        	UserInfoModel: 'model/master/UserInfoModel',
-        		
         	//viewmodels
         	UserInfoViewModel: 'viewmodel/master/UserInfoViewModel',	
         		

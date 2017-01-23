@@ -11,10 +11,16 @@ define(function(require) {
             initialize : function(args) {
             	self = _.extend(this,args);
             	
+            	self.controller = raijin.getViewModel(self.controller);
+            	
             	raijin.addView(self);
             	
-            	self.controller.fetch();
+            	self.controller.init();
 
+            },
+            
+            events : {
+            	
             },
             
             onContextEvent: function(event, data){
@@ -28,7 +34,8 @@ define(function(require) {
                 return self;
             },
             
-            events : {
+            destory: function(){
+            	self.remove();
             }
 
         });

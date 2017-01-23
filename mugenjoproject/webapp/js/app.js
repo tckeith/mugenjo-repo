@@ -1,25 +1,21 @@
 //define(function (require) {
 define(['jquery', 'backbone', 'underscore', 'raijin', 'utils', 'toastr', 'CryptoJS',
-	    'testView', 'FooterView', 'UserInfoView', 'UserInfoModel', 'UserInfoViewModel', 'UserLoginView'],
+	    'testView', 'FooterView', 'UserInfoView', 'UserInfoViewModel', 'UserLoginView'],
 		function($, Backbone, _, raijin, utils, toastr, CryptoJS,
-				testView, FooterView, UserInfoView, UserInfoModel, UserInfoViewModel, UserLoginView) {
+				testView, FooterView, UserInfoView, UserInfoViewModel, UserLoginView) {
 	
 	
 	$(function(){
 		
 		//Declare ViewModels and Models
 		
-		var userInfoM = new UserInfoModel.instance({name: "UserInfoModel"});
-    	raijin.addModel(userInfoM);
-    	
-    	var userVM = new UserInfoViewModel.instance({name: "UserInfoViewModel", domain : 'UserInfoModel', subscriptions: ['UserInfoModel']});
-    	raijin.addViewModel(userVM);
+    	var UserInfoVM = new UserInfoViewModel.instance({name: "UserInfoViewModel", domain : 'UserInfoModel', subscriptions: ['UserInfoModel']});
+    	raijin.addViewModel(UserInfoVM);
 		
     	
 		var AppRouter = Backbone.Router.extend({
 			routes : {
 				'': 'showHome',
-				'home': 'showHome',
 				'signon': 'login'
 			}
 		});
@@ -43,7 +39,7 @@ define(['jquery', 'backbone', 'underscore', 'raijin', 'utils', 'toastr', 'Crypto
         	
         	UserLoginView.instance({
         		name: "UserLoginView",
-        		controller: userVM,
+        		controller: 'UserInfoViewModel',
         		subscriptions: ["UserInfoViewModel"],
         		el: "#center-panel"
         	});
@@ -56,7 +52,7 @@ define(['jquery', 'backbone', 'underscore', 'raijin', 'utils', 'toastr', 'Crypto
         	if (!Backbone.History.started){   Backbone.history.start();	}
         	
         	//User information panel
-        	UserInfoView.instance({name: "UserInfoView", controller: userVM, subscriptions: ['UserInfoViewModel'], el: ".user-info"});
+        	UserInfoView.instance({name: "UserInfoView", controller: 'UserInfoViewModel', subscriptions: ['UserInfoViewModel'], el: ".user-info"});
         	
         	//Set Footer
         	FooterView.instance({name:"FooterView", el:"#footers"});

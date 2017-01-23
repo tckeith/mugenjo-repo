@@ -16,44 +16,12 @@ define('raijin',['require','underscore','jquery','blockui'], function( require )
 	 	/*Base Model*/
 	    Raijin = function(config) {
 	    	
-	    	var models = [], views = [], viewmodels = [];
+	    	var views = [], viewmodels = [];
 	    	var exportName, previousObject;
 	    	eventHub = new EventHub();
 	    	
 	    	this.id = (Math.random());
 	    	
-	    	this.addModel = function( model ){
-				var mod, 
-				idx, maxIdx;
-				
-				var results = [];
-				
-				if(models[model['name']])
-					return;
-				
-				model['publish'] = eventHub.postEvent;
-
-		    	if( arguments.length === 1 && _.isArray(model) ) {
-		    		return this.addModel.apply(this, model);
-		    	} 
-		    	
-	    		for( idx = 0, maxIdx = arguments.length; idx < maxIdx; idx++ ) {
-	    			mod = arguments[idx];
-	    			if(mod.name){
-	    				models[mod.name] = mod;
-	    			}
-	    			
-	    			results.push(mod);
-	    		}
-	    		
-	    		if(model['subscriptions'])
-	    			eventHub.subscribeEvents.apply(eventHub, arguments);
-	    		
-	    		mod['status'] = 'initialized';
-	    	    		
-		    	return mod;
-			};
-			
 			this.addViewModel = function( viewmodel ){
 				var idx, maxIdx, vm,
 	    		results = [];
@@ -110,10 +78,6 @@ define('raijin',['require','underscore','jquery','blockui'], function( require )
 				eventHub.subscribeEvents.apply(eventHub, arguments);
 				
 		    	return arguments.length === 1 ? results[0] : results;
-			};
-			
-			this.getModel = function( name ){
-				return models[name];
 			};
 			
 			this.getView = function( name ){
