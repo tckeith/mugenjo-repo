@@ -16,7 +16,7 @@ define('raijin',['require','underscore','jquery','blockui'], function( require )
 	 	/*Base Model*/
 	    Raijin = function(config) {
 	    	
-	    	var views = [], viewmodels = [];
+	    	var views = [], viewmodels = [], router = null;
 	    	var exportName, previousObject;
 	    	eventHub = new EventHub();
 	    	
@@ -87,6 +87,14 @@ define('raijin',['require','underscore','jquery','blockui'], function( require )
 			this.getViewModel = function ( name ){
 				return viewmodels[name];
 			};
+			
+			this.addRouter = function(router){
+				this.router = router;
+			}
+			
+			this.getRouter = function(){
+				return this.router;
+			}
 			
 			/*Functional*/
 			this.startBusyOn = function (element){

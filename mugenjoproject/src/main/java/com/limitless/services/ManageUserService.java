@@ -21,7 +21,7 @@ public class ManageUserService implements IManageUserService {
 		String currentUser = IdentityUtil.getCurrentUser();
 		
 		if(currentUser.equals(Constants.GUESTID))
-			return Constants.GESTTACCOUNT;
+			return Constants.GUESTTACCOUNT;
 		
 		return userDAO.requestUserInfo(currentUser);
 		
@@ -31,6 +31,12 @@ public class ManageUserService implements IManageUserService {
 	public UserModel validateLogin(UserModel user){
 		
 		return userDAO.validateLogin(user);
+	}
+	
+	
+	@Override
+	public UserModel createUserModel(UserModel user){
+		return userDAO.createUserModel(user);
 	}
 
 }

@@ -8,4 +8,6 @@ public interface IManageUserDAO {
 
 	public UserModel validateLogin(UserModel user);
 
+	UserModel createUserModel(UserModel user);
+
 }

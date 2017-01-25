@@ -7,5 +7,7 @@ public interface IManageUserService {
 	public UserModel requestUserInfo();
 
 	UserModel validateLogin(UserModel user);
+
+	UserModel createUserModel(UserModel user);
 	
 }

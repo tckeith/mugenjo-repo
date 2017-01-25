@@ -8,20 +8,40 @@ define(['jquery', 'backbone', 'underscore', 'raijin', 'utils', 'toastr', 'Crypto
 	$(function(){
 		
 		//Declare ViewModels and Models
-		
     	var UserInfoVM = new UserInfoViewModel.instance({name: "UserInfoViewModel", domain : 'UserInfoModel', subscriptions: ['UserInfoModel']});
     	raijin.addViewModel(UserInfoVM);
 		
     	
 		var AppRouter = Backbone.Router.extend({
+			initialize: function(){
+				this.routesHit = 0;
+				
+				Backbone.history.on('route', function(){this.routesHit++;}, this);
+			},
 			routes : {
 				'': 'showHome',
 				'signon': 'login'
+			},
+			previous: function(){
+				if(this.routesHit > 1){
+					this.routesHit = this.routesHit - 2;
+					window.history.back();
+				}else{
+					
+					if(Backbone.history.getFragment() != '')
+						this.routesHit = 0;
+					this.navigate('', {trigger:true, replace:true});
+				}
+			},
+			navigateTo: function(route){
+				this.navigate('#/'+route);
 			}
 		});
 		
 		/*Instantiate the router */
         var app_router = new AppRouter();
+        
+        raijin.addRouter(app_router);
         
         /*Routes*/
         app_router.on('route:showHome',_.debounce(function(){

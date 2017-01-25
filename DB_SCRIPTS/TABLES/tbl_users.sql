@@ -2,7 +2,7 @@ USE mugenjo;
 
 CREATE TABLE `tbl_users` (
   `UID` varchar(255) NOT NULL COMMENT 'User Id',
-  `DISPLYID` varchar(20) NOT NULL,
+  `DISPLYID` varchar(255) NOT NULL,
   `USR_FNAME` varchar(255) NOT NULL,
   `USR_LNAME` varchar(255) NOT NULL,
   `EMAIL` varchar(255) NOT NULL,

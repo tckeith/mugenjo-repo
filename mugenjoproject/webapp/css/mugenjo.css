@@ -101,10 +101,10 @@ footer {
 }
 
 .busyComponent {
-	background-image: url('../images/spinner.gif');
+	background-image: url('../images/loading/loading-gears.gif');
 	background-repeat: no-repeat;
 	background-position: center;
-	height: 25px;
+	height: 241px;
 }
 
 /*content*/

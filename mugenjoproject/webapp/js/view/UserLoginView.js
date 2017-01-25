@@ -54,11 +54,15 @@ define(function(require) {
             	self.model.set('email', email)
             	self.model.set('password', password);
             	
+            	raijin.startBusyOn('master-container');
+            	
             	self.model.save()
             	.done(function(x, y, z){
-            		debugger;
+            		raijin.stopBusyOn('master-container');
+            		raijin.getRouter().previous();
             	})
             	.fail(function(xhr){
+            		raijin.stopBusyOn('master-container');
             		if(xhr.status !== 200)
             			toastr["error"](xhr.responseJSON.message);
             	});

@@ -48,5 +48,34 @@ public class ManageUserController {
 		else
 			return new ResponseEntity<Object>(Constants.LOGINFAILED, HttpStatus.UNAUTHORIZED);
 	}
-
+	
+	@ResponseBody
+	@RequestMapping(value = "/User", method = RequestMethod.POST)
+	public final ResponseEntity<?> createUser(@RequestBody UserModel user){
+		
+		UserModel newUser = userService.createUserModel(user);
+		
+		if(newUser != null && newUser.getUID() != null){
+			return new ResponseEntity<UserModel>(newUser, HttpStatus.OK);
+		}
+		else 
+			return new ResponseEntity<Object>(Constants.NOUSER, HttpStatus.BAD_REQUEST);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/User", method = RequestMethod.GET)
+	public final ResponseEntity<?> getUser(){
+		
+		UserModel user = userService.requestUserInfo();
+		
+		return new ResponseEntity<UserModel>(user, HttpStatus.OK);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/User", method = RequestMethod.PUT)
+	public final ResponseEntity<?> updateUser(@RequestBody UserModel user){
+		
+		
+		return null;
+	}
 }

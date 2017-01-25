@@ -15,8 +15,6 @@
 		<result property="statusId" column="STATUS" />
 		<result property="createDate" column="CREATED_DATE" />
 		<result property="lastModifiedDate" column="LAST_MODIFIED_DATE" />
-	
-	
 	</resultMap>
 	
 	<select id="requestUserInfo" resultMap="userResultMap" statementType="CALLABLE"> 
@@ -30,6 +28,13 @@
 			#{email,		jdbcType=VARCHAR, 		javaType=String, 		mode=IN},
 			#{pwd,			jdbcType=VARCHAR, 		javaType=String, 		mode=IN}
         )}
+	</select>
+	
+	
+	<select id="createUpdateUserModel" resultMap="userResultMap" statementType="CALLABLE">
+		{call mugenjo.`PKG_MANAGEUSER.PRC_UPDATEUSER`(
+			#{usermodel, javaType=Object,	mode=IN,	typeHandler=com.limitless.DAO.typehandlers.UserModelTypeHandler}
+		)}
 	</select>
 	
 	

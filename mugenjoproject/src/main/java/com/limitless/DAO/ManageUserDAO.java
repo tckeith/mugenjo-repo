@@ -20,7 +20,7 @@ import com.limitless.util.RequestUtil;
 public class ManageUserDAO implements IManageUserDAO {
 	
 	@Autowired 
-	IManageUserMapper userMap;
+	IManageUserMapper uMapper;
 	
 	@Autowired
 	RestTemplate restTemplate;
@@ -31,7 +31,7 @@ public class ManageUserDAO implements IManageUserDAO {
 		
 		request.put("UID", UID);
 		
-		return userMap.requestUserInfo(request);
+		return uMapper.requestUserInfo(request);
 	}
 	
 	@Override
@@ -41,7 +41,16 @@ public class ManageUserDAO implements IManageUserDAO {
 		request.put("email", user.getEmail());
 		request.put("pwd", user.getPassword());
 		
-		return userMap.validateLogin(request);
+		return uMapper.validateLogin(request);
+	}
+	
+	@Override
+	public UserModel createUserModel(UserModel user){
+		Map<String, Object> request = new HashMap<String, Object>();
+		
+		request.put("usermodel", user);
+		
+		return uMapper.createUpdateUserModel(request);
 	}
 	
 	
