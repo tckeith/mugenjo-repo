@@ -24,7 +24,7 @@
 	</select>	
 	
 	<select id="validateLogin" resultMap="userResultMap" statementType="CALLABLE"> 
-		{call mugenjo.`PKG_MANAGEUSER.PRC_VALIDATELOGIN`( 
+		{call MUGENJO.`PKG_MANAGEUSER.PRC_VALIDATELOGIN`( 
 			#{email,		jdbcType=VARCHAR, 		javaType=String, 		mode=IN},
 			#{pwd,			jdbcType=VARCHAR, 		javaType=String, 		mode=IN}
         )}
@@ -32,8 +32,10 @@
 	
 	
 	<select id="createUpdateUserModel" resultMap="userResultMap" statementType="CALLABLE">
-		{call mugenjo.`PKG_MANAGEUSER.PRC_UPDATEUSER`(
-			#{usermodel, javaType=Object,	mode=IN,	typeHandler=com.limitless.DAO.typehandlers.UserModelTypeHandler}
+		{call MUGENJO.`PKG_MANAGEUSER.PRC_UPDATEUSER`(
+			#{usermodel, 	javaType=Object,		mode=IN,	typeHandler=com.limitless.DAO.typehandlers.UserModelTypeHandler},
+        	#{success, 		jdbcType=VARCHAR,		javaType=String, 		mode=OUT},<!-- , 		typeHandler=com.limitless.DAO.typehandlers.SuccessTypeHandler -->
+        	#{message,		jdbcType=VARCHAR, 		javaType=String, 		mode=OUT}
 		)}
 	</select>
 	

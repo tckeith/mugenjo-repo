@@ -8,10 +8,10 @@ import java.sql.SQLException;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 
-public class YesNoBooleanTypeHandler extends BaseTypeHandler<Boolean> {
+public class SuccessTypeHandler extends BaseTypeHandler<Boolean> {
 
-	private static final String YES = "Y";
-	private static final String NO = "N";
+	private static final String TRUE = "true";
+	private static final String FALSE = "false";
 
 	@Override
 	public void setNonNullParameter(PreparedStatement ps, int i,
@@ -41,13 +41,13 @@ public class YesNoBooleanTypeHandler extends BaseTypeHandler<Boolean> {
 		if (b == null){
 			return null;
 		}
-		return b ? YES : NO;
+		return b ? TRUE : FALSE;
 	}
 
 	private Boolean convert(String s) {
 		if (s == null){
 			return null;
 		}
-		return YES.equals(s);
+		return TRUE.equals(s);
 	}
 }
