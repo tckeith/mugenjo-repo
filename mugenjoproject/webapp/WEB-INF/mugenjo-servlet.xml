@@ -82,9 +82,8 @@
 	<bean id="exceptionAspect" class="com.limitless.exceptions.ExceptionAspect"/>
 
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="smtp.fmr.com" />
-		<property name="port" value="25" />
-		<!-- <property name="username" value="no-reply_LearningGateway@fmr.com"/> -->
+		<property name="host" value="" />
+		<property name="port" value="" />
 		<property name="javaMailProperties">
 			<props>
 				<prop key="mail.transport.protocol">smtp</prop>
